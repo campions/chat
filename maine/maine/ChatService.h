@@ -1,0 +1,29 @@
+//
+//  ChatService.h
+//  sample-chat
+//
+//  Created by Igor Khomenko on 10/21/13.
+//  Copyright (c) 2013 Igor Khomenko. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "Pods/QuickBlox/Quickblox.framework/Headers/QBChatRoom.h"
+#import "Pods/QuickBlox/Quickblox.framework/Headers/QBUUser.h"
+
+
+#define kNotificationDidReceiveNewMessage @"kNotificationDidReceiveNewMessage"
+#define kNotificationDidReceiveNewMessageFromRoom @"kNotificationDidReceiveNewMessageFromRoom"
+#define kMessage @"kMessage"
+#define kRoomJID @"kRoomJID"
+
+@interface ChatService : NSObject
+
++ (instancetype)instance;
+
+- (void)loginWithUser:(QBUUser *)user completionBlock:(void(^)())completionBlock;
+- (void)sendMessage:(QBChatMessage *)message;
+- (void)sendMessage:(QBChatMessage *)message toRoom:(QBChatRoom *)chatRoom;
+- (void)joinRoom:(QBChatRoom *)room completionBlock:(void(^)(QBChatRoom *))completionBlock;
+- (void)leaveRoom:(QBChatRoom *)room;
+
+@end
